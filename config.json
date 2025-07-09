@@ -76,6 +76,18 @@
     "ikun": {
       "api": "https://ikunzyapi.com/api.php/provide/vod",
       "name": "iKun资源"
+    },
+    "ikun": {
+      "api": "https://www.fantuan.tv/api.php/provide/vod",
+      "name": "饭团影视"
+    },
+    "ikun": {
+      "api": "https://cj.lziapi.com/api.php/provide/vod",
+      "name": "i影视工厂"
+    },
+    "ikun": {
+      "api": "https://www.qiqidys.com/api.php/provide/vod",
+      "name": "七七资源"
     }
   }
 }
