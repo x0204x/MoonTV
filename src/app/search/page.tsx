@@ -40,7 +40,7 @@ function SearchPageClient() {
   const aggregatedResults = useMemo(() => {
     const map = new Map<string, SearchResult[]>();
     searchResults.forEach((item) => {
-      // 使用 title + year + type 作为键，若 year 不存在则使用 'unknown'
+      // 使用 title + year + type 作为键，year 必然存在，但依然兜底 'unknown'
       const key = `${item.title}-${item.year || 'unknown'}-${
         item.episodes.length === 1 ? 'movie' : 'tv'
       }`;
@@ -202,13 +202,13 @@ function SearchPageClient() {
                       return (
                         <div key={`agg-${mapKey}`} className='w-full'>
                           <VideoCard
-                            id={group[0].id}
-                            source={group[0].source}
-                            title={group[0].title}
-                            poster={group[0].poster}
-                            source_name={group[0].source_name}
-                            year={group[0].year}
+                            from='search'
                             items={group}
+                            query={
+                              searchQuery.trim() !== group[0].title
+                                ? searchQuery.trim()
+                                : ''
+                            }
                           />
                         </div>
                       );
@@ -225,7 +225,12 @@ function SearchPageClient() {
                           episodes={item.episodes.length}
                           source={item.source}
                           source_name={item.source_name}
-                          douban_id={item.douban_id}
+                          douban_id={item.douban_id?.toString()}
+                          query={
+                            searchQuery.trim() !== item.title
+                              ? searchQuery.trim()
+                              : ''
+                          }
                           from='search'
                         />
                       </div>
